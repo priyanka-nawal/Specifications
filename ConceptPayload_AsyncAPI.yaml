@@ -1,0 +1,306 @@
+asyncapi: "2.1.0"
+info:
+  version: "49"
+  title: "ConceptPayloadAndProperties"
+  x-channel-name: "/Channels/HTTP"
+  x-channel-properties:
+    be.http.maxKeepAliveRequests: "-1"
+    be.http.debugLogPattern: "%{yyyy MMM dd HH:mm:ss.SSS 'GMT'X}t %A %I [%m] '%U'\
+      \ [%s] %bbytes %Dms"
+    be.http.maxSavePostSize: "4096"
+    be.http.ssl_server_useServerCipherOrder: "false"
+    be.http.debugLogRenameOnRotate: "true"
+    be.http.maxSpareThreads: "50"
+    be.http.maxPostSize: "2097152"
+    be.http.serverHeader: "Apache-Coyote/1.1"
+    be.http.connectorInstances: "1"
+    be.http.maxHttpHeaderSize: "4096"
+    be.http.ssl_server_enabledprotocols: "TLSv1,TLSv1.1,TLSv1.2"
+    be.http.debug: "false"
+    be.http.compressableMimeType: "text/html,text/xml,text/plain"
+    be.http.compression: "off"
+    be.http.sessionTimeout: "1800"
+    be.http.ssl_server_ciphers: "TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DHE_DSS_WITH_AES_256_CBC_SHA,TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,TLS_DHE_DSS_WITH_AES_256_GCM_SHA384"
+    be.http.connectionLinger: "-1"
+    be.http.debugLogFilePattern: ".yyyy-MM-dd"
+    be.http.acceptCount: "-1"
+    be.http.minSpareThreads: "4"
+    be.http.connectionTimeout: "60000"
+    be.http.maxProcessors: "-1"
+    be.http.enableDNSLookups: "false"
+    be.http.tcpNoDelay: "true"
+    be.http.debugLogMaxDays: "-1"
+    be.http.debugLogRotatable: "true"
+    be.http.connectorType: "NIO"
+    be.http.socketBufferSize: "9000"
+    be.http.useBodyEncodingForURI: "false"
+channels:
+  /Channels/HTTP/testXml:
+    subscribe:
+      operationId: "Channels_HTTP_testXml"
+      x-default-event: "/Events/SendStudentDataXml"
+      bindings:
+        http:
+          type: "request"
+          method: "GET,POST,PUT,DELETE"
+          query:
+            allOf:
+            - type: "object"
+              properties:
+                AdmissionDate:
+                  type: "string"
+                  format: "date-time"
+                Percentage:
+                  type: "number"
+                  format: "double"
+                Standard:
+                  type: "string"
+                Age:
+                  type: "integer"
+                  format: "int32"
+                EligibleForScholorship:
+                  type: "boolean"
+                SSN:
+                  type: "integer"
+                  format: "int64"
+              x-entityname: "SendStudentDataXml"
+      message:
+        $ref: "#/components/messages/SendStudentDataXml"
+      x-dest-properties:
+        be.http.jsonPayload: "false"
+        be.http.IncludeEventType: "ALWAYS"
+        serializer-deserializer-class: "com.tibco.cep.driver.http.serializer.RESTMessageSerializer"
+        be.http.type: "DEFAULT"
+        be.http.ResponseEvent: "/Events/StudentResponseXml"
+    publish:
+      operationId: "Channels_HTTP_testXml_response"
+      x-default-event: "/Events/StudentResponseXml"
+      bindings:
+        http:
+          type: "response"
+      message:
+        $ref: "#/components/messages/StudentResponseXml"
+  /Channels/HTTP/testJson:
+    subscribe:
+      operationId: "Channels_HTTP_testJson"
+      x-default-event: "/Events/SendStudentDataJson"
+      bindings:
+        http:
+          type: "request"
+          method: "GET,POST,PUT,DELETE"
+          query:
+            allOf:
+            - type: "object"
+              properties:
+                AdmissionDate:
+                  type: "string"
+                  format: "date-time"
+                Percentage:
+                  type: "number"
+                  format: "double"
+                Standard:
+                  type: "string"
+                Age:
+                  type: "integer"
+                  format: "int32"
+                EligibleForScholorship:
+                  type: "boolean"
+                SSN:
+                  type: "integer"
+                  format: "int64"
+              x-entityname: "SendStudentDataJson"
+      message:
+        $ref: "#/components/messages/SendStudentDataJson"
+      x-dest-properties:
+        be.http.jsonPayload: "true"
+        be.http.IncludeEventType: "ALWAYS"
+        serializer-deserializer-class: "com.tibco.cep.driver.http.serializer.RESTMessageSerializer"
+        be.http.type: "DEFAULT"
+        be.http.ResponseEvent: "/Events/StudentResponseJson"
+    publish:
+      operationId: "Channels_HTTP_testJson_response"
+      x-default-event: "/Events/StudentResponseJson"
+      bindings:
+        http:
+          type: "response"
+      message:
+        $ref: "#/components/messages/StudentResponseJson"
+servers:
+  default:
+    url: "http://localhost:7070"
+    protocol: "HTTP"
+    x-sharedResource-properties:
+      host: "localhost"
+      port: "7070"
+      useSsl: "false"
+      address: "http://localhost:7070"
+      sharedResourceName: "/SharedResources/HTTPCon.sharedhttp"
+components:
+  schemas:
+    ConceptRef_:
+      type: "object"
+      properties:
+        ref:
+          type: "string"
+          historyPolicy: 0
+          historySize: 0
+    ContainedConcept1:
+      properties:
+        ContainedConceptProp1:
+          type: "string"
+          historyPolicy: 0
+          historySize: 0
+    referenceConcept1:
+      properties:
+        referenceConceptProp1:
+          type: "string"
+          historyPolicy: 0
+          historySize: 0
+    Student:
+      type: "object"
+      properties:
+        Name:
+          type: "string"
+          historyPolicy: 0
+          historySize: 0
+        Roll_No:
+          type: "integer"
+          format: "int32"
+          historyPolicy: 0
+          historySize: 0
+        Marks:
+          type: "number"
+          format: "double"
+          historyPolicy: 0
+          historySize: 0
+        IsTopper:
+          type: "boolean"
+          historyPolicy: 0
+          historySize: 0
+        RegistrationNo:
+          type: "integer"
+          format: "int64"
+          historyPolicy: 0
+          historySize: 0
+        Subjects:
+          type: "array"
+          items:
+            type: "string"
+            historyPolicy: 0
+            historySize: 0
+        DOB:
+          type: "string"
+          format: "date-time"
+          historyPolicy: 0
+          historySize: 0
+        containedConcept1:
+          type: "object"
+          $ref: "#/components/schemas/ContainedConcept1"
+          historyPolicy: 0
+          historySize: 0
+          x-conceptPath: "/Concepts/ContainedConcept1"
+          x-event-payloadtype: "CEPT_REF"
+        refConcept1:
+          type: "object"
+          $ref: "#/components/schemas/ConceptRef_"
+          historyPolicy: 0
+          historySize: 0
+          x-conceptPath: "/Concepts/referenceConcept1"
+          x-event-payloadtype: "CEPT_REF"
+    StudentResponseXml:
+      type: "object"
+      properties:
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        Percentage:
+          type: "number"
+          format: "double"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              historyPolicy: 0
+              historySize: 0
+              x-conceptPath: "/Concepts/Student"
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+        Standard:
+          type: "string"
+        Age:
+          type: "integer"
+          format: "int32"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+    SendStudentDataXml:
+      type: "object"
+      properties:
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              historyPolicy: 0
+              historySize: 0
+              x-conceptPath: "/Concepts/Student"
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+    StudentResponseJson:
+      type: "object"
+      properties:
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        Percentage:
+          type: "number"
+          format: "double"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              historyPolicy: 0
+              historySize: 0
+              x-conceptPath: "/Concepts/Student"
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+        Standard:
+          type: "string"
+        Age:
+          type: "integer"
+          format: "int32"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+    SendStudentDataJson:
+      type: "object"
+      properties:
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              historyPolicy: 0
+              historySize: 0
+              x-conceptPath: "/Concepts/Student"
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+  messages:
+    StudentResponseXml:
+      payload:
+        $ref: "#/components/schemas/StudentResponseXml"
+    SendStudentDataXml:
+      payload:
+        $ref: "#/components/schemas/SendStudentDataXml"
+    StudentResponseJson:
+      payload:
+        $ref: "#/components/schemas/StudentResponseJson"
+    SendStudentDataJson:
+      payload:
+        $ref: "#/components/schemas/SendStudentDataJson"

@@ -1,0 +1,440 @@
+openapi: "3.1.0"
+info:
+  title: "ConceptPayloadAndProperties"
+  version: "49"
+  contact:
+    name: "ConceptPayloadAndProperties"
+servers:
+- url: "http://localhost:7070"
+  x-sharedResourceName: "/SharedResources/HTTPCon.sharedhttp"
+tags:
+- name: "/Channels/HTTP"
+paths:
+  /Channels/HTTP/testXml:
+    x-channel-name: "HTTP"
+    post:
+      tags:
+      - "/Channels/HTTP"
+      x-default-event: "/Events/SendStudentDataXml"
+      operationId: "Channels_HTTP_testXml_post"
+      parameters:
+      - name: "Age"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      - name: "Standard"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "Percentage"
+        in: "query"
+        required: true
+        schema:
+          type: "number"
+      - name: "AdmissionDate"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+          format: "date-time"
+      - name: "EligibleForScholorship"
+        in: "query"
+        required: true
+        schema:
+          type: "boolean"
+      - name: "SSN"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+      responses:
+        default:
+          description: "Success Response"
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/StudentResponseXml"
+                x-eventPath: "/Events/StudentResponseXml"
+    put:
+      tags:
+      - "/Channels/HTTP"
+      x-default-event: "/Events/SendStudentDataXml"
+      operationId: "Channels_HTTP_testXml_put"
+      parameters:
+      - name: "Age"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      - name: "Standard"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "Percentage"
+        in: "query"
+        required: true
+        schema:
+          type: "number"
+      - name: "AdmissionDate"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+          format: "date-time"
+      - name: "EligibleForScholorship"
+        in: "query"
+        required: true
+        schema:
+          type: "boolean"
+      - name: "SSN"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+      responses:
+        default:
+          description: "Success Response"
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/StudentResponseXml"
+                x-eventPath: "/Events/StudentResponseXml"
+  /Channels/HTTP/testJson:
+    x-channel-name: "HTTP"
+    post:
+      tags:
+      - "/Channels/HTTP"
+      x-default-event: "/Events/SendStudentDataJson"
+      operationId: "Channels_HTTP_testJson_post"
+      parameters:
+      - name: "Age"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      - name: "Standard"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "Percentage"
+        in: "query"
+        required: true
+        schema:
+          type: "number"
+      - name: "AdmissionDate"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+          format: "date-time"
+      - name: "EligibleForScholorship"
+        in: "query"
+        required: true
+        schema:
+          type: "boolean"
+      - name: "SSN"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+      responses:
+        default:
+          description: "Success Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentResponseJson"
+                x-eventPath: "/Events/StudentResponseJson"
+    put:
+      tags:
+      - "/Channels/HTTP"
+      x-default-event: "/Events/SendStudentDataJson"
+      operationId: "Channels_HTTP_testJson_put"
+      parameters:
+      - name: "Age"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      - name: "Standard"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "Percentage"
+        in: "query"
+        required: true
+        schema:
+          type: "number"
+      - name: "AdmissionDate"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+          format: "date-time"
+      - name: "EligibleForScholorship"
+        in: "query"
+        required: true
+        schema:
+          type: "boolean"
+      - name: "SSN"
+        in: "query"
+        required: true
+        schema:
+          type: "integer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+      responses:
+        default:
+          description: "Success Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentResponseJson"
+                x-eventPath: "/Events/StudentResponseJson"
+components:
+  schemas:
+    ConceptRef_:
+      type: "object"
+      properties:
+        ref:
+          type: "string"
+          x-historyPolicy: 0
+          x-historySize: 0
+    ContainedConcept1:
+      type: "object"
+      properties:
+        ContainedConceptProp1:
+          type: "string"
+          x-historyPolicy: 0
+          x-historySize: 0
+    referenceConcept1:
+      type: "object"
+      properties:
+        referenceConceptProp1:
+          type: "string"
+          x-historyPolicy: 0
+          x-historySize: 0
+    Student:
+      type: "object"
+      xml:
+        namespace: "www.tibco.com/be/ontology/Concepts/Student"
+      properties:
+        Name:
+          type: "string"
+          x-historyPolicy: 0
+          x-historySize: 0
+        Roll_No:
+          type: "integer"
+          format: "int32"
+          x-historyPolicy: 0
+          x-historySize: 0
+        Marks:
+          type: "number"
+          format: "double"
+          x-historyPolicy: 0
+          x-historySize: 0
+        IsTopper:
+          type: "boolean"
+          x-historyPolicy: 0
+          x-historySize: 0
+        RegistrationNo:
+          type: "number"
+          format: "int64"
+          x-historyPolicy: 0
+          x-historySize: 0
+        Subjects:
+          type: "array"
+          items:
+            type: "string"
+            x-historyPolicy: 0
+            x-historySize: 0
+        DOB:
+          type: "string"
+          format: "date-time"
+          x-historyPolicy: 0
+          x-historySize: 0
+        containedConcept1:
+          type: "object"
+          $ref: "#/components/schemas/ContainedConcept1"
+          x-conceptPath: "/Concepts/ContainedConcept1"
+          x-historyPolicy: 0
+          x-historySize: 0
+          x-event-payloadtype: "CEPT_REF"
+        refConcept1:
+          type: "object"
+          $ref: "#/components/schemas/ConceptRef_"
+          x-conceptPath: "/Concepts/referenceConcept1"
+          x-historyPolicy: 0
+          x-historySize: 0
+          x-event-payloadtype: "CEPT_REF"
+    SendStudentDataXml:
+      type: "object"
+      xml:
+        name: "event"
+      properties:
+        Age:
+          type: "integer"
+          format: "int32"
+        Standard:
+          type: "string"
+        Percentage:
+          type: "number"
+          format: "double"
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+    StudentResponseXml:
+      type: "object"
+      xml:
+        name: "event"
+      properties:
+        Age:
+          type: "integer"
+          format: "int32"
+        Standard:
+          type: "string"
+        Percentage:
+          type: "number"
+          format: "double"
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+    SendStudentDataJson:
+      type: "object"
+      xml:
+        name: "event"
+      properties:
+        Age:
+          type: "integer"
+          format: "int32"
+        Standard:
+          type: "string"
+        Percentage:
+          type: "number"
+          format: "double"
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
+    StudentResponseJson:
+      type: "object"
+      xml:
+        name: "event"
+      properties:
+        Age:
+          type: "integer"
+          format: "int32"
+        Standard:
+          type: "string"
+        Percentage:
+          type: "number"
+          format: "double"
+        AdmissionDate:
+          type: "string"
+          format: "date-time"
+        EligibleForScholorship:
+          type: "boolean"
+        SSN:
+          type: "integer"
+          format: "int64"
+        payload:
+          properties:
+            Student:
+              type: "object"
+              $ref: "#/components/schemas/Student"
+              x-conceptPath: "/Concepts/Student"
+              x-historyPolicy: 0
+              x-historySize: 0
+              x-event-payloadtype: "CEPT_REF"
+              x-nameSpace: "www.tibco.com/be/ontology/Concepts/Student"
